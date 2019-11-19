@@ -1,13 +1,18 @@
 package com.lynn;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
 
 public class AuthorizeIn {
 
     @NotBlank(message = "缺少response_type参数")
     private String responseType;
     @NotBlank(message = "缺少client_id参数")
-    private String ClientId;
+    @Length(min = 5,max = 10)
+    @Email(message = "email格式错误")
+    private String clientId;
 
     private String state;
 
@@ -23,11 +28,11 @@ public class AuthorizeIn {
     }
 
     public String getClientId() {
-        return ClientId;
+        return clientId;
     }
 
     public void setClientId(String clientId) {
-        ClientId = clientId;
+        this.clientId = clientId;
     }
 
     public String getState() {
